@@ -279,3 +279,7 @@
   - ユーザーのsteam所持ゲーム本数が多い場合の情報取得における効率的な実装ができるか
 
 ---
+
+### 画面遷移図
+Figma:
+https://www.figma.com/design/jpYQM16kqOQ2w9d3J5h353/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=2-1380&t=TQUh9pKaQL3aBRBF-4
