@@ -287,6 +287,6 @@ https://www.figma.com/design/jpYQM16kqOQ2w9d3J5h353/%E7%94%BB%E9%9D%A2%E9%81%B7%
 ---
 
 ### ER図
-https://gyazo.com/713961aababdabce9a8c525e86249e89
+https://gyazo.com/7bbc8de5e13c0d709aad9c6aff94e795
 
 ---
