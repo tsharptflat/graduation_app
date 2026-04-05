@@ -39,6 +39,10 @@ gem "bootsnap", require: false
 # Bootstrap
 gem 'bootstrap', '~> 5.3'
 
+gem 'rails-i18n', '~> 7.0.0'
+
+gem 'slim-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -48,11 +52,18 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem 'rspec-rails', '~> 7.0.0'
+  gem 'factory_bot_rails'
+
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'pry-rails'
+  gem 'bullet'
+  gem 'annotate'
 end
 
 group :test do
