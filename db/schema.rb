@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_05_065337) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_05_142757) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,14 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_05_065337) do
     t.index ["name"], name: "index_character_types_on_name", unique: true
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "game_title"
+    t.integer "steam_app_id"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "outfit_items", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -76,13 +84,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_05_065337) do
 
   create_table "user_game_libraries", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "game_title", null: false
-    t.bigint "game_id", null: false
     t.float "minutes_played", default: 0.0, null: false
-    t.integer "game_price", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "game_id"], name: "index_user_game_libraries_on_user_id_and_game_id", unique: true
+    t.bigint "game_id", null: false
+    t.index ["game_id"], name: "index_user_game_libraries_on_game_id"
     t.index ["user_id"], name: "index_user_game_libraries_on_user_id"
   end
 
@@ -101,5 +107,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_05_065337) do
   add_foreign_key "user_characters", "character_types"
   add_foreign_key "user_characters", "outfit_items"
   add_foreign_key "user_characters", "users"
+  add_foreign_key "user_game_libraries", "games"
   add_foreign_key "user_game_libraries", "users"
 end
