@@ -1,0 +1,2 @@
+class CharacterTextCondition < ApplicationRecord
+end

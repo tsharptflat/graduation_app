@@ -1,0 +1,2 @@
+class CharacterExpression < ApplicationRecord
+end
