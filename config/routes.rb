@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get "omniauth_callbacks/steam"
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   root "static_pages#top"
 
   resource :user, only: %i[show]
