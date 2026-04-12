@@ -1,0 +1,7 @@
+- @user_game_libraries.each do |game|
+    .game
+      .game-info
+        .game-name
+          = game['name']
+        .game-playtime
+          = "プレイ時間: #{(game['playtime_forever'] / 60.0).round(2)}時間"

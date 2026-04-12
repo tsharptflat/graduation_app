@@ -4,4 +4,4 @@ class UserGameLibrary < ApplicationRecord
 
   validates :game_id, uniqueness: { scope: :user_id }
   validates :minutes_played, numericality: { greater_than_or_equal_to: 0 }
-end
+  end

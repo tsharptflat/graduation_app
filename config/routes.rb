@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resource :user, only: %i[show]
 
+  resources :game_libraries, only: %i[index]
+
   #devise_forで生成するルーティングのうち、DELETE /users/sign_outを上書きして、HTTP DELETEリクエストを受け取るようにする
   #（今回は:database_authenticatableが不要だが、ログアウトのルーティングが生成されていないため）
   devise_scope :user do
