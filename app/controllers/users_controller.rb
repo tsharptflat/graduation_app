@@ -3,6 +3,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @total_price = current_user.games.sum(:price)
+    @total_price = current_user.user_game_libraries.unplayed.joins(:game).sum('games.price')
   end
 end
