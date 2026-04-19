@@ -1,8 +1,14 @@
 h1 積みゲー統計ページ
-p ユーザー名
-p 積みゲー総額
-p 積みゲー本数
+p ユーザー名: #{@user.name}
+p 
+  | 積みゲー総額:
+  = number_to_currency(@total_price, precision: 0, unit: '¥')
+p 積みゲー本数: #{@unplayed_games.count}
 
-p 積みゲーリスト
+p
+  | 積みゲーリスト:
+ul
+  - @unplayed_games.each do |library|
+    li= library.game.game_title
 
 p ネクストプレイ提案
