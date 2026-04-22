@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_18_122619) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_22_043139) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,6 +89,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_18_122619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "game_id", null: false
+    t.datetime "last_played_at"
     t.index ["game_id"], name: "index_user_game_libraries_on_game_id"
     t.index ["user_id", "game_id"], name: "index_user_game_libraries_on_user_id_and_game_id", unique: true
     t.index ["user_id"], name: "index_user_game_libraries_on_user_id"
