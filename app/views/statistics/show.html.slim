@@ -1,6 +1,6 @@
 h1 積みゲー統計ページ
 p ユーザー名: #{@user.name}
-p 
+p
   | 積みゲー総額:
   = number_to_currency(@total_price, precision: 0, unit: '¥')
 p 積みゲー本数: #{@unplayed_games.count}
@@ -11,4 +11,13 @@ ul
   - @unplayed_games.each do |library|
     li= library.game.game_title
 
-p ネクストプレイ提案
+
+p
+  | ネクストプレイ提案:
+ul
+  - @recommended_games.each do |library|
+    li= library.game.game_title
+    - if library.last_played_at
+      li= library.last_played_at&.strftime('%Y年%m月%d日')
+    - else
+      li 未プレイ
