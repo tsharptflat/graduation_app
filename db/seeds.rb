@@ -4,30 +4,15 @@ character_type = CharacterType.find_or_create_by!(name: 'いらすと子') do |c
 end
 
 #総額ごとのconditions
-condition_show_min = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
-  ctc.min_price = 0
-  ctc.max_price = 0
-end
+condition_show_min = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1, min_price: 0, max_price: 0)
 
-condition_show_low = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
-  ctc.min_price = 1
-  ctc.max_price = 5000
-end
+condition_show_low = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1, min_price: 1, max_price: 5000)
 
-condition_show_med = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
-  ctc.min_price = 5001
-  ctc.max_price = 10000
-end
+condition_show_med = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1, min_price: 5001, max_price: 10000)
 
-condition_show_high = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
-  ctc.min_price = 10001
-  ctc.max_price = 30000
-end
+condition_show_high = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1, min_price: 10001, max_price: 30000)
 
-condition_show_max = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
-  ctc.min_price = 30001
-  ctc.max_price = nil
-end
+condition_show_max = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1, min_price: 30001, max_price: nil)
 
 #表情差分
 expression_neutral = CharacterExpression.find_or_create_by!(character_type_id: character_type.id, emotion_type: 'neutral') do |ce|
@@ -71,8 +56,9 @@ CharacterText.find_or_create_by!(character_text_condition_id: condition_show_max
   ct.text = '…'
 end
 
+=begin
 #ユーザー指定
-user = User.find_by(uid: '76561198369759270')
+user = User.find_or_create_by(uid: '76561198369759270')
 
 #ユーザーキャラ
 UserCharacter.find_or_create_by!(user_id: user.id, character_type_id: character_type.id) do |uc|
@@ -80,3 +66,4 @@ UserCharacter.find_or_create_by!(user_id: user.id, character_type_id: character_
   uc.friendship_point = 0
   uc.outfit_item_id = nil
 end
+=end
