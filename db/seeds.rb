@@ -12,7 +12,7 @@ character_type = CharacterType.find_or_create_by!(name: 'いらすと子') do |c
   ct.image_path = 'https://res.cloudinary.com/dvswzgioa/image/upload/q_auto/f_auto/v1777086275/business_woman1_1_smile_ujoauq.png'
 end
 
-character_type_condition = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
+character_text_condition = CharacterTextCondition.find_or_create_by!(character_type_id: character_type.id, page: 'users_show', friendship_level: 1) do |ctc|
   ctc.min_price = 10000
   ctc.max_price = 30000
 end
