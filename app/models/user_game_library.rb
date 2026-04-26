@@ -12,4 +12,17 @@ class UserGameLibrary < ApplicationRecord
   def self.recommend_3
     all.to_a.sample(3)
   end
+
+  def self.sync_game_playtime_and_price(user, data)
+    game = Game.find_or_create_by_steam_app_id(data['appid'], data['name'])
+
+    library = user.user_game_libraries.find_or_initialize_by(game_id: game.id)
+    rtime = data['rtime_last_played']
+
+    library.minutes_played = data['playtime_forever'] || 0
+    library.last_played_at = rtime && rtime > 0 ? Time.at(rtime) : nil
+    library.save!
+
+    UpdateGamePriceJob.perform_now(game.steam_app_id) if game.price.nil?
+  end
 end
