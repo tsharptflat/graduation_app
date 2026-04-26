@@ -5,6 +5,8 @@ p
   = number_to_currency(@total_price, precision: 0, unit: '¥')
 p 積みゲー本数: #{@unplayed_games.count}
 
+= link_to "積みゲー総額へ戻る", user_path
+
 p
   | 積みゲーリスト:
 ul

@@ -1,5 +1,5 @@
-class GameLibrariesController < ApplicationController
-  def index
+class LoadingController < ApplicationController
+  def loading
     steam_service = SteamService.new
     @user_game_libraries = steam_service.get_owned_games(current_user.uid)
 
@@ -16,5 +16,6 @@ class GameLibrariesController < ApplicationController
       UpdateGamePriceJob.perform_now(game.steam_app_id) if game.price.nil?
     end
     @user_game_libraries = current_user.user_game_libraries.includes(:game)
+    redirect_to user_path
   end
 end
