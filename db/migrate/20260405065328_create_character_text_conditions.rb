@@ -8,7 +8,7 @@ class CreateCharacterTextConditions < ActiveRecord::Migration[7.2]
     end
 
     add_index :character_text_conditions,
-              [:character_type_id, :page, :friendship_level],
+              [ :character_type_id, :page, :friendship_level ],
               unique: true,
               name: 'idx_char_text_cond_on_type_page_level'
   end

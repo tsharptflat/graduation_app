@@ -7,6 +7,6 @@ class CreateCharacterExpressions < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :character_expressions, [:character_type_id, :emotion_type], unique: true, name: 'idx_char_expressions_on_type_and_emotion'
+    add_index :character_expressions, [ :character_type_id, :emotion_type ], unique: true, name: 'idx_char_expressions_on_type_and_emotion'
   end
 end

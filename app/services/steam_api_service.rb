@@ -9,7 +9,7 @@ class SteamApiService
       filters: 'price_overview'
     })
 
-    #無料ゲームの場合はprice_overviewが存在しないため、nilを返す 有料の場合はハッシュが続く
+    # 無料ゲームの場合はprice_overviewが存在しないため、nilを返す 有料の場合はハッシュが続く
     data = response.parsed_response.dig(steam_app_id.to_s, 'data')
     return nil unless data.is_a?(Hash)
 

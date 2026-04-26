@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :uid, presence: true, uniqueness: true
 
-  devise :timeoutable, :omniauthable, omniauth_providers: [:steam]
+  devise :timeoutable, :omniauthable, omniauth_providers: [ :steam ]
 
   def self.from_omniauth(auth)
     user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)

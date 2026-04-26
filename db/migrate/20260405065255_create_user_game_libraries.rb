@@ -9,6 +9,6 @@ class CreateUserGameLibraries < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :user_game_libraries, [:user_id, :game_id], unique: true
+    add_index :user_game_libraries, [ :user_id, :game_id ], unique: true
   end
 end
