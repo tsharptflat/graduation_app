@@ -1,4 +1,8 @@
 class UserGameLibrary < ApplicationRecord
+UNPLAYED_THRESHOLD_MINUTES = 120
+CHEAPEST_GAMES_LIMIT = 10
+RECOMMENDATION_COUNT = 3
+
   belongs_to :user
   belongs_to :game
 
@@ -6,11 +10,11 @@ class UserGameLibrary < ApplicationRecord
   validates :minutes_played, numericality: { greater_than_or_equal_to: 0 }
 
   scope :not_recently_played, -> { where(last_played_at: nil).or(where('last_played_at < ?', 1.month.ago)) }
-  scope :unplayed, -> { where('minutes_played <= ?', 120).merge(not_recently_played) }
-  scope :cheapest_games, -> { joins(:game).merge(Game.order(price: 'asc')).limit(10) }
+  scope :unplayed, -> { where('minutes_played <= ?', UNPLAYED_THRESHOLD_MINUTES).merge(not_recently_played) }
+  scope :cheapest_games, -> { joins(:game).merge(Game.order(price: 'asc')).limit(CHEAPEST_GAMES_LIMIT) }
 
   def self.recommend_3
-    all.to_a.sample(3)
+    all.to_a.sample(RECOMMENDATION_COUNT)
   end
 
   def self.sync_game_playtime_and_price(user, data)
