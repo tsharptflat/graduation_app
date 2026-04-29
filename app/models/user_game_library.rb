@@ -1,7 +1,7 @@
 class UserGameLibrary < ApplicationRecord
-UNPLAYED_THRESHOLD_MINUTES = 120
-CHEAPEST_GAMES_LIMIT = 10
-RECOMMENDATION_COUNT = 3
+  UNPLAYED_THRESHOLD_MINUTES = 120
+  CHEAPEST_GAMES_LIMIT = 10
+  RECOMMENDATION_COUNT = 3
 
   belongs_to :user
   belongs_to :game
@@ -18,7 +18,7 @@ RECOMMENDATION_COUNT = 3
   end
 
   def self.sync_game_playtime_and_price(user, data)
-    game = nil #トランザクションブロックの中から代入、ジョブにて被参照
+    game = nil # トランザクションブロックの中から代入、ジョブにて被参照
     ActiveRecord::Base.transaction do
       game = Game.find_or_create_by_steam_app_id(data['appid'], data['name'])
 
@@ -30,5 +30,9 @@ RECOMMENDATION_COUNT = 3
       library.save!
     end
     UpdateGamePriceJob.perform_now(game.steam_app_id) if game.price.nil?
+  end
+
+  def self.total_price(user)
+    user.user_game_libraries.unplayed.joins(:game).sum('games.price')
   end
 end
