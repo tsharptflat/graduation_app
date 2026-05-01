@@ -3,8 +3,8 @@ div.text-center.price-display.fw-bold.mt-0
     = number_to_currency(@total_price, precision: 0, unit: '¥')
 
 div.character-fixed
-    div.speech-bubble.mb-3
-        p= @character_text.text
+    div.speech-bubble.mb-3.d-flex.align-items-center
+        p.mb-0 = @character_text.text
     div.text-center
         = image_tag(@character_expression.image_path, width: 200)
 

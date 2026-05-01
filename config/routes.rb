@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
   root "static_pages#top"
 
-  resource :user, only: %i[show]
+  resource :user, only: %i[show destroy]
 
   # devise_forで生成するルーティングのうち、DELETE /users/sign_outを上書きして、HTTP DELETEリクエストを受け取るようにする
   # （今回は:database_authenticatableが不要だが、ログアウトのルーティングが生成されていないため）

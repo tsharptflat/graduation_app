@@ -36,25 +36,20 @@ expression_shock = CharacterExpression.find_or_create_by!(character_type_id: cha
 end
 
 # テキスト
-CharacterText.find_or_create_by!(character_text_condition_id: condition_show_min.id, character_expression_id: expression_happy.id) do |ct|
-  ct.text = '積みゲーなし！素晴らしいですね！'
-end
+ct = CharacterText.find_or_create_by!(character_text_condition_id: condition_show_min.id, character_expression_id: expression_happy.id)
+ct.update!(text: '積みゲーなし！素晴らしいですね！')
 
-CharacterText.find_or_create_by!(character_text_condition_id: condition_show_low.id, character_expression_id: expression_neutral.id) do |ct|
-  ct.text = 'いい消化状況ですね！増やさないように注意していきましょう！'
-end
+ct = CharacterText.find_or_create_by!(character_text_condition_id: condition_show_low.id, character_expression_id: expression_neutral.id)
+ct.update!(text: 'いい消化状況ですね！増やさないように注意していきましょう！')
 
-CharacterText.find_or_create_by!(character_text_condition_id: condition_show_med.id, character_expression_id: expression_neutral.id) do |ct|
-  ct.text = '少し積んでいるゲームもあるようですね、次にどれをプレイしていきますか？'
-end
+ct = CharacterText.find_or_create_by!(character_text_condition_id: condition_show_med.id, character_expression_id: expression_neutral.id)
+ct.update!(text: '少し積んでいるゲームもあるようですね、次にどれをプレイしていきますか？')
 
-CharacterText.find_or_create_by!(character_text_condition_id: condition_show_high.id, character_expression_id: expression_disappointed.id) do |ct|
-  ct.text = '少し積みゲーが多いようですね…ここからプレイしていきましょう！'
-end
+ct = CharacterText.find_or_create_by!(character_text_condition_id: condition_show_high.id, character_expression_id: expression_disappointed.id)
+ct.update!(text: '少し積みゲーが多いようですね…ここからプレイしていきましょう！')
 
-CharacterText.find_or_create_by!(character_text_condition_id: condition_show_max.id, character_expression_id: expression_shock.id) do |ct|
-  ct.text = '…'
-end
+ct = CharacterText.find_or_create_by!(character_text_condition_id: condition_show_max.id, character_expression_id: expression_shock.id)
+ct.update!(text: 'なかなかの積み具合ですね…')
 
 =begin
 #ユーザー指定

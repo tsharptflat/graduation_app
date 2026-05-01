@@ -1,17 +1,20 @@
-nav.navbar.navbar-expand-lg.ps-3
-  h1 積み算
+nav.navbar.navbar-expand-lg.ps-3.fixed-top
+  -if user_signed_in?
+    h1 = link_to '積み算', user_path, class: 'text-white text-decoration-none'
+  - else
+    h1 = link_to '積み算', root_path, class: 'text-white text-decoration-none'
   - if user_signed_in?
     div.ms-auto.d-flex
       div.dropdown.pe-3
         button.btn.btn-secondary.dropdown-toggle.text-white.me-3 type="button" data-bs-toggle="dropdown" aria-expanded="false" 積みゲー分析
         ul.dropdown-menu
           li
-            a.dropdown-item href="#" 積みゲー総額
-            a.dropdown-item href="#" 積みゲー統計
+            = link_to '積みゲー総額', user_path, class: 'dropdown-item'
+            = link_to '積みゲー統計', statistic_path, class: 'dropdown-item'
 
       div.dropdown.pe-3
         button.btn.btn-secondary.dropdown-toggle.text-white type="button" data-bs-toggle="dropdown" aria-expanded="false" #{current_user.name}
         ul.dropdown-menu
           li
             = link_to 'ログアウト', destroy_user_session_path, class: 'dropdown-item', data: {turbo_method: :delete}
-            a.dropdown-item href = "#" アカウント削除
+            = link_to 'アカウント削除', user_path , class: 'dropdown-item', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }

@@ -1,17 +1,18 @@
-h1.text-center.pt-3.pb-3 積みゲー総額を見てみよう！
+div.container style="margin-top: 10rem;"
+    h1.text-center.pt-3.pb-3 積みゲー総額を見てみよう！
 
-div.text-center.pb-4
-    =  button_to 'Steamアカウントでログイン', user_steam_omniauth_authorize_path, method: :post, class: "btn btn-color text-white", data: { turbo: false }
+    div.text-center.pb-4
+        =  button_to 'Steamアカウントでログイン', user_steam_omniauth_authorize_path, method: :post, class: "btn btn-color text-white", data: { turbo: false }
 
-div.d-flex.justify-content-center
-    ul
-        li あなたが積んでいるゲームの定価総額を計算
-        li 積みゲー消化サポート機能
-        li 積みゲー消化推移（未実装）
+    div.d-flex.justify-content-center
+        ul
+            li あなたが積んでいるゲームの定価総額を計算
+            li 積みゲー消化サポート機能
+            li 積みゲー消化推移（実装予定）
 
-h2.text-center.pb-3 積みゲー本数ランキング
+    h2.text-center.pb-3 style="margin-top: 3rem;" 積みゲー本数ランキング
 
-div.d-flex.justify-content-center
-    ol
-        - @users.each do |user|
-            li = "#{user.name} #{UserGameLibrary.total_games_count(user)}本"
+    div.d-flex.justify-content-center
+        ol
+            - @users.each do |user|
+                li = "#{user.name} #{UserGameLibrary.total_games_count(user)}本"

@@ -5,4 +5,10 @@ class UsersController < ApplicationController
     @character_text = CharacterTextService.new.get_character_text(current_user, @page, @total_price)
     @character_expression = @character_text.character_expression
   end
+
+  def destroy
+    current_user.destroy!
+    sign_out current_user
+    redirect_to root_path
+  end
 end
