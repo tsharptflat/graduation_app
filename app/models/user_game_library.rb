@@ -2,6 +2,7 @@ class UserGameLibrary < ApplicationRecord
   UNPLAYED_THRESHOLD_MINUTES = 120
   CHEAPEST_GAMES_LIMIT = 10
   RECOMMENDATION_COUNT = 3
+  TSUMIGE_LIST_LIMIT = 10
 
   belongs_to :user
   belongs_to :game
