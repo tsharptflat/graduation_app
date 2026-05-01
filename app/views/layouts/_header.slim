@@ -1,4 +1,5 @@
-p ヘッダー
-- if user_signed_in?
-  = current_user.name
-  = link_to " ログアウト", destroy_user_session_path, data: {turbo_method: :delete}
+nav.navbar.navbar-expand-lg.ps-3
+  h1 積み算
+  - if user_signed_in?
+    = current_user.name
+    = link_to " ログアウト", destroy_user_session_path, data: {turbo_method: :delete}
