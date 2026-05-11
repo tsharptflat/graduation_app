@@ -11,7 +11,8 @@ class UserGameLibrary < ApplicationRecord
   validates :minutes_played, numericality: { greater_than_or_equal_to: 0 }
 
   scope :not_recently_played, -> { where(last_played_at: nil).or(where('last_played_at < ?', 1.month.ago)) }
-  scope :unplayed, -> { where('minutes_played <= ?', UNPLAYED_THRESHOLD_MINUTES).merge(not_recently_played) }
+  scope :not_cleared, -> { where(cleared_date: nil)}
+  scope :unplayed, -> { where('minutes_played <= ?', UNPLAYED_THRESHOLD_MINUTES).merge(not_recently_played).merge(not_cleared) }
   scope :cheapest_games, -> { joins(:game).merge(Game.order(price: 'asc')).limit(CHEAPEST_GAMES_LIMIT) }
 
   def self.recommend_3

@@ -23,12 +23,19 @@ div.card.text-white.w-50.border-0.mx-auto.mt-5
 
 div.card.text-white.w-50.border-0.mx-auto.mt-5
   div.card-header.card-header-color.pb-0
-    p.p-1 積みゲーリスト
+    span.p-1 積みゲーリスト
+    button.btn.btn-secondary.text-white.me-3 type="button" 更新する
+  div.d-flex.justify-content-between.px-3.card-header-color
+    span.col-6 ゲームタイトル
+    span.col-5 プレイ時間
+    span.col-3 クリア
   div.card-body.card-body-color.d-flex
     ol.w-100.px-3
       - @unplayed_games.each do |library|
         li.d-flex.justify-content-between
-          span = library.game.game_title
-          span = "#{(library.minutes_played/60.0).round(1)}時間"
+          span.col-6 = library.game.game_title
+          span.col-6 = "#{(library.minutes_played/60.0).round(1)}時間"
+          span.col-6.form-check.form-switch
+            input.form-check-input type="checkbox"
 
 
