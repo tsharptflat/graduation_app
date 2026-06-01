@@ -19,5 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :statistic, only: %i[show]
+  resource :statistic, only: %i[show] do
+    member do
+      patch 'update_cleared_games'
+    end
+  end
 end
