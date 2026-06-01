@@ -12,6 +12,7 @@ class UserGameLibrary < ApplicationRecord
 
   scope :not_recently_played, -> { where(last_played_at: nil).or(where('last_played_at < ?', 1.month.ago)) }
   scope :not_cleared, -> { where(cleared_date: nil)}
+  scope :cleared, -> { where.not(cleared_date: nil)}
   scope :unplayed, -> { where('minutes_played <= ?', UNPLAYED_THRESHOLD_MINUTES).merge(not_recently_played).merge(not_cleared) }
   scope :cheapest_games, -> { joins(:game).merge(Game.order(price: 'asc')).limit(CHEAPEST_GAMES_LIMIT) }
 
